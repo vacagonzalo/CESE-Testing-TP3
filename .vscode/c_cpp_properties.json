@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "TSE",
+            "includePath": [
+                "${default}",
+                "/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src",
+                "${workspaceFolder}/src"
+            ],
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14"
+        }
+    ],
+    "version": 4
+}
