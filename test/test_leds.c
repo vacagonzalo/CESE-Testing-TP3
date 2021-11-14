@@ -106,7 +106,7 @@ void test_turn_on_invalid_led(void)
 {
     uint8_t test_cases[] = {0, 17, 255};
     uint32_t size = sizeof(test_cases[0]) / sizeof(test_cases);
-    for(uint32_t i = 0; i < size; ++i)
+    for (uint32_t i = 0; i < size; ++i)
     {
         leds_turn_on(&virtual_port, test_cases[i]);
         TEST_ASSERT_EQUAL_HEX16(ALL_LEDS_OFF, virtual_port);
@@ -118,9 +118,21 @@ void test_turn_off_invalid_led(void)
     uint8_t test_cases[] = {0, 17, 255};
     uint32_t size = sizeof(test_cases[0]) / sizeof(test_cases);
     virtual_port = ALL_LEDS_ON;
-    for(uint32_t i = 0; i < size; ++i)
+    for (uint32_t i = 0; i < size; ++i)
     {
         leds_turn_off(&virtual_port, test_cases[i]);
         TEST_ASSERT_EQUAL_HEX16(ALL_LEDS_ON, virtual_port);
+    }
+}
+
+void test_read_invalid_led(void)
+{
+    uint8_t test_cases[] = {0, 17, 255};
+    uint32_t size = sizeof(test_cases[0]) / sizeof(test_cases);
+    virtual_port = ALL_LEDS_ON;
+    for (uint32_t i = 0; i < size; ++i)
+    {
+        bool status = leds_read_led_state(&virtual_port, test_cases[i]);
+        TEST_ASSERT_EQUAL_HEX16(LED_OFF, status);
     }
 }
