@@ -6,3 +6,8 @@ void leds_create(uint16_t *port)
 {
     *port = ALL_LEDS_OFF;
 }
+
+void leds_turn_on(uint16_t *port, uint8_t led_number)
+{
+    *port |= 1 << (led_number - 1);
+}
