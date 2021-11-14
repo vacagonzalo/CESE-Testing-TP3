@@ -57,3 +57,15 @@ void test_turn_on_and_off_one_led(void)
         TEST_ASSERT_EQUAL_HEX16(ALL_LEDS_OFF, virtual_port);
     }
 }
+
+void test_turn_off_all_leds(void)
+{
+    uint16_t virtual_port;
+    uint16_t test_case = 1;
+    while(test_case++)
+    {
+        virtual_port = test_case;
+        leds_turn_all_off(&virtual_port);
+        TEST_ASSERT_EQUAL_HEX16(ALL_LEDS_OFF, virtual_port);
+    }
+}
