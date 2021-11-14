@@ -24,3 +24,8 @@ void leds_turn_all_off(uint16_t *port)
 {
     leds_create(port);
 }
+
+bool leds_read_led_state(uint16_t *port, uint8_t led_number)
+{
+    return (*port >> (led_number - 1)) & 1;
+}

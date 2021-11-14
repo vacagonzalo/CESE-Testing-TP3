@@ -64,10 +64,23 @@ void test_turn_on_and_off_one_led(void)
 void test_turn_off_all_leds(void)
 {
     uint16_t test_case = 1;
-    while(test_case++)
+    while (test_case++)
     {
         virtual_port = test_case;
         leds_turn_all_off(&virtual_port);
         TEST_ASSERT_EQUAL_HEX16(ALL_LEDS_OFF, virtual_port);
+    }
+}
+
+void test_read_off_led_state(void)
+{
+    for (uint16_t test_case = OFFSET_INDEX;
+         test_case < NUMBER_OF_LEDS + OFFSET_INDEX;
+         ++test_case)
+    {
+        virtual_port = ALL_LEDS_ON;
+        leds_turn_off(&virtual_port, test_case);
+        bool led_state = leds_read_led_state(&virtual_port, test_case);
+        TEST_ASSERT_EQUAL_HEX16(LED_OFF, led_state);
     }
 }
