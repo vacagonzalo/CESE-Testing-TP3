@@ -99,3 +99,16 @@ void test_read_on_led_state(void)
 }
 
 // note: the test "verify parameters' limits" is embedded in each previous test
+
+// INVALID CASES
+
+void test_turn_on_invalid_led(void)
+{
+    uint8_t test_cases[] = {0, 17, 255};
+    uint32_t size = sizeof(test_cases[0]) / sizeof(test_cases);
+    for(uint32_t i = 0; i < size; ++i)
+    {
+        leds_turn_on(&virtual_port, test_cases[i]);
+        TEST_ASSERT_EQUAL_HEX16(ALL_LEDS_OFF, virtual_port);
+    }
+}
