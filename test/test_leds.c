@@ -84,3 +84,18 @@ void test_read_off_led_state(void)
         TEST_ASSERT_EQUAL_HEX16(LED_OFF, led_state);
     }
 }
+
+void test_read_on_led_state(void)
+{
+    for (uint16_t test_case = OFFSET_INDEX;
+         test_case < NUMBER_OF_LEDS + OFFSET_INDEX;
+         ++test_case)
+    {
+        virtual_port = ALL_LEDS_OFF;
+        leds_turn_on(&virtual_port, test_case);
+        bool led_state = leds_read_led_state(&virtual_port, test_case);
+        TEST_ASSERT_EQUAL_HEX16(LED_ON, led_state);
+    }
+}
+
+// note: the test "verify parameters' limits" is embedded in each previous test
