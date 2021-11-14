@@ -7,19 +7,24 @@
 #define OFFSET_INDEX 1
 #define LED_BIT(X) (1 << (X - 1))
 
-void setUp() {}
+static uint16_t virtual_port;
+
+void setUp()
+{
+    leds_create(&virtual_port);
+}
+
 void tearDown() {}
 
 void test_system_starts_with_all_leds_off(void)
 {
-    uint16_t virtual_port = ALL_LEDS_ON;
+    virtual_port = ALL_LEDS_ON;
     leds_create(&virtual_port);
     TEST_ASSERT_EQUAL_HEX16(ALL_LEDS_OFF, virtual_port);
 }
 
 void test_turn_on_one_led(void)
 {
-    uint16_t virtual_port;
     for (uint16_t test_case = OFFSET_INDEX;
          test_case < NUMBER_OF_LEDS + OFFSET_INDEX;
          ++test_case)
@@ -32,7 +37,6 @@ void test_turn_on_one_led(void)
 
 void test_turn_off_one_led(void)
 {
-    uint16_t virtual_port;
     for (uint16_t test_case = OFFSET_INDEX;
          test_case < NUMBER_OF_LEDS + OFFSET_INDEX;
          ++test_case)
@@ -46,7 +50,6 @@ void test_turn_off_one_led(void)
 
 void test_turn_on_and_off_one_led(void)
 {
-    uint16_t virtual_port;
     for (uint16_t test_case = OFFSET_INDEX;
          test_case < NUMBER_OF_LEDS + OFFSET_INDEX;
          ++test_case)
@@ -60,7 +63,6 @@ void test_turn_on_and_off_one_led(void)
 
 void test_turn_off_all_leds(void)
 {
-    uint16_t virtual_port;
     uint16_t test_case = 1;
     while(test_case++)
     {
