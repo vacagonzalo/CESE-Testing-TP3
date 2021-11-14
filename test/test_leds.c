@@ -20,3 +20,12 @@ void test_turn_on_one_led(void)
     leds_turn_on(&virtual_port, 3);
     TEST_ASSERT_EQUAL_HEX16(LED_BIT(3), virtual_port);
 }
+
+void test_turn_off_one_led(void)
+{
+    uint16_t virtual_port;
+    leds_create(&virtual_port);
+    virtual_port = 0xFFFF;
+    leds_turn_off(&virtual_port, 3);
+    TEST_ASSERT_EQUAL_HEX16(~LED_BIT(3), virtual_port);    
+}
